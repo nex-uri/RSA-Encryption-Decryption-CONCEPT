@@ -4,9 +4,20 @@
     {
         private readonly char[] _char;
         private readonly long[] ascii_value;
+        private long[] receiver_decrypted_data;
         private long[] value;
         public int index;
 
+        public message_value(long[] data_arr)
+        {
+            receiver_decrypted_data = data_arr;
+
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("[OK] \t\t");
+            Console.ResetColor();
+            Console.WriteLine($"The data has been SENT to the instance.");
+            decrypt_message();
+        }
         public message_value()
         {
             _char =
@@ -66,8 +77,34 @@
             }
             value = new_size_arr;
         }
+        public void decrypt_message()
+        {
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write("[LOG] \t\t");
+            Console.ResetColor();
+            Console.WriteLine($"Converting of each ASCII value into a character.");
+
+            foreach (long value in receiver_decrypted_data)
+            {
+                for (int i = 0; i < ascii_value.Length; i++)
+                {
+                    if (value == ascii_value[i])
+                    {
+                        receiver_decrypted_data[i] = _char[i];
+                        break;
+                    }
+                }
+                Console.WriteLine(value);
+            }
+        }
         public void message(string input)
         {
+            Console.WriteLine("\n---------------------------------------------------------------------------------------------------");
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            Console.Write("[LOG] \t\t");
+            Console.ResetColor();
+            Console.WriteLine($"Converting of each character into ASCII values.");
+
             if (input is string)
             {
                 foreach (char c in input)
@@ -84,28 +121,26 @@
                         }
                     }
                 }
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write("[OK] \t\t");
+                Console.ResetColor();
+                Console.WriteLine($"Each of charater in a whole message has been CONVERTED to ASCII values.");
+
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write("LOG: ");
+                Console.Write("[LOG] \t\t");
                 Console.ResetColor();
                 Console.WriteLine($"Sending the data to another instance in order to generate prime keys.");
-
-                for (int i = 0; i < value.Length; i++)
-                {
-                    Console.Write($"\t {value[i]}");
-                }
-                Console.WriteLine();
-
                 SendData();
             }
             else
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write("ERROR: ");
+                Console.Write("[ERROR] \t\t");
                 Console.ResetColor();
                 Console.WriteLine($"The inputted text does not support to any character from Windows.");
 
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write("LOG: ");
+                Console.Write("[LOG] \t\t");
                 Console.ResetColor();
                 Console.WriteLine($"This application will forcefully close in 3 seconds...");
                 Thread.Sleep(3000);

@@ -16,8 +16,8 @@
             {
                 receiver_data_arr = arr;
 
-                Console.ForegroundColor = ConsoleColor.Green;
-                Console.Write("SUCCESS: ");
+                Console.ForegroundColor = ConsoleColor.Cyan;
+                Console.Write("[OK] \t\t");
                 Console.ResetColor();
                 Console.WriteLine($"The data has been SENT to the instance.");
                 data_largest_value();
@@ -25,12 +25,12 @@
             else
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write("ERROR: ");
+                Console.Write("[ERROR] \t\t");
                 Console.ResetColor();
                 Console.WriteLine($"The data is invalid to a specified variable.");
 
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write("LOG: ");
+                Console.Write("[LOG] \t\t");
                 Console.ResetColor();
                 Console.WriteLine($"This application will forcefully close in 3 seconds...");
                 Thread.Sleep(3000);
@@ -86,12 +86,12 @@
             if (receiver_data_arr.Length == 0)
             {
                 Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write("ERROR: ");
+                Console.Write("[ERROR] \t");
                 Console.ResetColor();
                 Console.WriteLine($"The data is empty.");
 
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.Write("LOG: ");
+                Console.Write("[LOG] \t\t");
                 Console.ResetColor();
                 Console.WriteLine($"This application will forcefully close in 3 seconds...");
                 Thread.Sleep(3000);
@@ -113,7 +113,7 @@
         public void data_prime_numbers_generator(long limit)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write("LOG: ");
+            Console.Write("[LOG] \t\t");
             Console.ResetColor();
             Console.WriteLine($"Generating prime keys...");
 
@@ -144,12 +144,6 @@
                 }
                 else continue;
             }
-
-            //foreach (int i in prime_numbers_list)
-            //{
-            //    Console.WriteLine(i);
-            //}
-
             data_prime_keys_gen();
         }
         public void data_prime_keys_gen()
@@ -177,12 +171,12 @@
             prime_on = (prime_p - 1) * (prime_q - 1);
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write("SUCCESS: ");
+            Console.Write("[SUCCESS] \t");
             Console.ResetColor();
             Console.WriteLine($"The prime keys have been GENERATED. {prime_p} {prime_q} {prime_on}");
 
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write("LOG: ");
+            Console.Write("[LOG] \t\t");
             Console.ResetColor();
             Console.WriteLine($"Sending the data to another instance in order to generate encryption key.");
             SendData();

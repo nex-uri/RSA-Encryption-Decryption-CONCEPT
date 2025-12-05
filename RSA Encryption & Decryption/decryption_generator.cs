@@ -15,8 +15,8 @@
             receiver_prime_n = prime_key_n;
             receiver_prime_on = prime_key_on;
 
-            Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write("SUCCESS: ");
+            Console.ForegroundColor = ConsoleColor.Cyan;
+            Console.Write("[OK] \t\t");
             Console.ResetColor();
             Console.WriteLine($"The data has been SENT to the instance.");
             data_decryption_key_gen();
@@ -35,7 +35,7 @@
         public void data_decryption_key_gen()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write("LOG: ");
+            Console.Write("[LOG] \t\t");
             Console.ResetColor();
             Console.WriteLine($"Generating decryption key...");
 
@@ -66,12 +66,12 @@
             prime_d = x0;
 
             Console.ForegroundColor = ConsoleColor.Green;
-            Console.Write("SUCCESS: ");
+            Console.Write("[SUCCESS] \t");
             Console.ResetColor();
             Console.WriteLine($"The decryption key has been GENERATED. {prime_d}");
 
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write("LOG: ");
+            Console.Write("[LOG] \t\t");
             Console.ResetColor();
             Console.WriteLine($"Sending the data to another instance in order to encrypt the message.");
             Send_Data();
