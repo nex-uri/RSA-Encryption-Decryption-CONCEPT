@@ -3,8 +3,8 @@
     internal class message_value
     {
         private readonly char[] _char;
-        private readonly int[] ascii_value;
-        private int[] value;
+        private readonly long[] ascii_value;
+        private long[] value;
         public int index;
 
         public message_value()
@@ -44,13 +44,13 @@
                 33, 34, 35, 36, 37, 38, 39, 40, 41, 42, 43, 44, 45, 46, 47,
                 58, 59, 60, 61, 62, 63, 64, 91, 92, 93, 94, 95, 96, 123, 124, 125, 126, 32
             ];
-            value = Array.Empty<int>();
+            value = Array.Empty<long>();
             index = -1;
         }
 
         public void IncreaseSize()
         {
-            int[] new_size_arr = new int[value.Length + 1];
+            long[] new_size_arr = new long[value.Length + 1];
             for (int i = 0; i < value.Length; i++)
             {
                 new_size_arr[i] = value[i];
@@ -59,8 +59,8 @@
         }
         public void DecreaseSize()
         {
-            int[] new_size_arr = new int[value.Length - 1];
-            for (int i = 0; i < new_size_arr.Length; i++)
+            long[] new_size_arr = new long[value.Length - 1];
+            for (long i = 0; i < new_size_arr.Length; i++)
             {
                 new_size_arr[i] = value[i];
             }
@@ -88,6 +88,13 @@
                 Console.Write("LOG: ");
                 Console.ResetColor();
                 Console.WriteLine($"Sending the data to another instance in order to generate prime keys.");
+
+                for (int i = 0; i < value.Length; i++)
+                {
+                    Console.Write($"\t {value[i]}");
+                }
+                Console.WriteLine();
+
                 SendData();
             }
             else
@@ -107,7 +114,7 @@
         }
         public void SendData()
         {
-            prime_keys_generator send_data = new prime_keys_generator(value);
+            prime_keys_generator send_data_message = new prime_keys_generator(value);
         }
     }
 }

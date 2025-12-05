@@ -2,16 +2,17 @@
 {
     internal class prime_keys_generator
     {
-        private readonly int[] receiver_data_arr;
+        private readonly long[] receiver_data_arr;
         private readonly static Random random = new Random();
-        private List<int> prime_numbers_list = new List<int>();
-        private int prime_p;
-        private int prime_q;
-        private int prime_on;
+        private List<long> prime_numbers_list = new List<long>();
+        private long prime_p;
+        private long prime_q;
+        private long prime_n;
+        private long prime_on;
 
-        public prime_keys_generator(int[] arr)
+        public prime_keys_generator(long[] arr)
         {
-            if (arr is int[])
+            if (arr is long[])
             {
                 receiver_data_arr = arr;
 
@@ -36,7 +37,7 @@
                 Environment.Exit(0);
             }
         }
-        public int priv_prime_p
+        public long priv_prime_p
         {
             get
             {
@@ -47,7 +48,7 @@
                 prime_p = value;
             }
         }
-        public int priv_prime_q
+        public long priv_prime_q
         {
             get
             {
@@ -58,7 +59,18 @@
                 prime_q = value;
             }
         }
-        public int priv_prime_on
+        public long priv_prime_n
+        {
+            get
+            {
+                return prime_n;
+            }
+            set
+            {
+                prime_n = value;
+            }
+        }
+        public long priv_prime_on
         {
             get
             {
@@ -87,7 +99,7 @@
             }
             else
             {
-                int biggest_value = receiver_data_arr[0];
+                long biggest_value = receiver_data_arr[0];
                 for (int i = 0; i < receiver_data_arr.Length; i++)
                 {
                     if (biggest_value < receiver_data_arr[i])
@@ -98,14 +110,14 @@
                 data_prime_numbers_generator(biggest_value);
             }
         }
-        public void data_prime_numbers_generator(int limit)
+        public void data_prime_numbers_generator(long limit)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("LOG: ");
             Console.ResetColor();
             Console.WriteLine($"Generating prime keys...");
 
-            int max = limit * limit;
+            long max = limit * limit;
             bool[] isPrime = new bool[max + 1];
             for (int i = 2; i <= max; i++)
             {
@@ -132,6 +144,12 @@
                 }
                 else continue;
             }
+
+            //foreach (int i in prime_numbers_list)
+            //{
+            //    Console.WriteLine(i);
+            //}
+
             data_prime_keys_gen();
         }
         public void data_prime_keys_gen()
@@ -155,12 +173,13 @@
                 prime_q = prime_numbers_list[prime_random_2];
             }
 
+            prime_n = prime_p * prime_q;
             prime_on = (prime_p - 1) * (prime_q - 1);
 
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("SUCCESS: ");
             Console.ResetColor();
-            Console.WriteLine($"The prime keys have been GENERATED.");
+            Console.WriteLine($"The prime keys have been GENERATED. {prime_p} {prime_q} {prime_on}");
 
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("LOG: ");
@@ -170,7 +189,7 @@
         }
         public void SendData()
         {
-            encryption_generator send_data_p = new encryption_generator(prime_p, prime_on);
+            encryption_generator send_data_p = new encryption_generator(prime_p, prime_on, prime_n, receiver_data_arr);
         }
     }
 }

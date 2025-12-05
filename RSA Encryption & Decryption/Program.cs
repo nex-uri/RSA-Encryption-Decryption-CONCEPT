@@ -7,7 +7,7 @@ namespace RSA_Encryption___Decryption
         static void Main(string[] args)
         {
             message_value message = new message_value();
-            message.message("hello");
+            message.message("Josh");
 
             //foreach (var debug in message.DEBUG_value_display())
             //{

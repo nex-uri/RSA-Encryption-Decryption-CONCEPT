@@ -2,14 +2,18 @@
 {
     internal class encryption_generator
     {
-        private readonly int receiver_prime_p;
-        private readonly int receiver_prime_on;
-        private int prime_e;
+        private readonly long[] receiver_data_arr;
+        private readonly long receiver_prime_p;
+        private readonly long receiver_prime_n;
+        private readonly long receiver_prime_on;
+        private long prime_e;
 
-        public encryption_generator(int prime_key_p, int prime_key_on)
+        public encryption_generator(long prime_key_p, long prime_key_on, long prime_key_n, long[] data_arr)
         {
             receiver_prime_p = prime_key_p;
+            receiver_prime_n = prime_key_n;
             receiver_prime_on = prime_key_on;
+            receiver_data_arr = data_arr;
 
             Console.ForegroundColor = ConsoleColor.Green;
             Console.Write("SUCCESS: ");
@@ -17,7 +21,7 @@
             Console.WriteLine($"The data has been SENT to the instance.");
             data_encryption_key_gen();
         }
-        public int priv_prime_e
+        public long priv_prime_e
         {
             get
             {
@@ -35,22 +39,22 @@
             Console.ResetColor();
             Console.WriteLine($"Generating encryption key...");
 
-            for (int i = receiver_prime_p; i < receiver_prime_on; i++)
+            for (long i = receiver_prime_p; i < receiver_prime_on; i++)
             {
                 bool looped = true;
-                int dividend = receiver_prime_on;
-                int divisor = i;
-                int quotient = 0;
-                int remainder = 0;
+                long dividend = receiver_prime_on;
+                long divisor = i;
+                long quotient = 0;
+                long remainder = 0;
                 while (looped)
                 {
                     quotient = dividend / divisor;
                     remainder = dividend % divisor;
 
                     dividend = divisor;
-                    divisor = quotient;
+                    divisor = remainder;
 
-                    if (divisor == 0 || remainder == 1 || remainder == 0)
+                    if (remainder == 1 || remainder == 0)
                     {
                         looped = false;
                     }
@@ -63,8 +67,8 @@
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.Write("SUCCESS: ");
                     Console.ResetColor();
-                    Console.WriteLine($"The encryption key has been GENERATED.");
-                    
+                    Console.WriteLine($"The encryption key has been GENERATED. {prime_e}");
+
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.Write("LOG: ");
                     Console.ResetColor();
@@ -77,7 +81,7 @@
         }
         public void SendData()
         {
-
+            decryption_generator send_data_e = new decryption_generator(prime_e, receiver_prime_on, receiver_prime_n, receiver_data_arr);
         }
     }
 }
