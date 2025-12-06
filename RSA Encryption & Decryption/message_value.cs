@@ -73,6 +73,7 @@
             {
                 foreach (char c in input)
                 {
+                    bool found = false;
                     for (int i = 0; i < _char.Length; i++)
                     {
                         if (c == _char[i] && index < value.Length)
@@ -83,13 +84,13 @@
                             value[index] = ascii_value[i];
 
                             trigger = 0;
+                            found = true;
                             break;
                         }
-                        else
-                        {
-                            trigger = -1;
-                            break;
-                        }
+                    }
+                    if (!found)
+                    {
+                        trigger = -1;
                     }
                 }
 

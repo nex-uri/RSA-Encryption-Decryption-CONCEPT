@@ -83,11 +83,7 @@
                             bool looped4 = true;
                             while (looped4)
                             {
-                                Console.Write("Would you like to input your message again? (y/n) ");
-                                Console.ForegroundColor = ConsoleColor.Red;
-                                Console.Write("(IF TYPED 'y/Y', YOUR PREVIOUS MESSAGE AND ITS DATA WILL NOT BE SAVED.)");
-                                Console.ResetColor();
-                                Console.Write(": ");
+                                Console.Write("Would you like to input your message again? (y/n): ");
 
                                 Console.ForegroundColor = ConsoleColor.White;
                                 string back_option = Console.ReadLine();

@@ -112,6 +112,13 @@
 
             if (prime_n < 0 && prime_on < 0)
             {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write("[ERROR] \t\t");
+                Console.ResetColor();
+                Console.WriteLine($"Failed to generate prime keys.");
+            }
+            else
+            {
                 Console.ForegroundColor = ConsoleColor.Green;
                 Console.Write("[SUCCESS] \t");
                 Console.ResetColor();
@@ -122,13 +129,6 @@
                 Console.ResetColor();
                 Console.WriteLine($"Sending the data to another instance in order to generate encryption key.");
                 SendData();
-            }
-            else
-            {
-                Console.ForegroundColor = ConsoleColor.Red;
-                Console.Write("[ERROR] \t\t");
-                Console.ResetColor();
-                Console.WriteLine($"Failed to generate prime keys.");
             }
         }
         private void SendData()

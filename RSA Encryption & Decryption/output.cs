@@ -56,7 +56,7 @@
             Console.Write("[ENCRYPTED MESSAGE] \t");
             Console.ResetColor();
 
-            foreach (char c in receiver_encrypted_arr)
+            foreach (long c in receiver_encrypted_arr)
             {
                 Console.ForegroundColor = ConsoleColor.Yellow;
                 Console.Write($"{c} ");
