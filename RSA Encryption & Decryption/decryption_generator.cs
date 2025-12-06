@@ -22,7 +22,7 @@
             data_decryption_key_gen();
         }
 
-        public void data_decryption_key_gen()
+        private void data_decryption_key_gen()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("[LOG] \t\t");
@@ -66,7 +66,7 @@
             Console.WriteLine($"Sending the data to another instance in order to encrypt the message.");
             Send_Data();
         }
-        public void Send_Data()
+        private void Send_Data()
         {
             encryption_message send_data = new encryption_message(receiver_prime_e, prime_d, receiver_prime_n, receiver_data_arr);
         }

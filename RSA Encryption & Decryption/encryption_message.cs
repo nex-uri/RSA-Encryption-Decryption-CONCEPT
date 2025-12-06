@@ -26,7 +26,7 @@ namespace RSA_Encryption___Decryption
             data_encryption_message();
         }
 
-        public void data_encryption_message()
+        private void data_encryption_message()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("[LOG] \t\t");
@@ -71,7 +71,7 @@ namespace RSA_Encryption___Decryption
             Console.WriteLine($"Sending the data to another instance for an output.");
             SendData();
         }
-        public void SendData()
+        private void SendData()
         {
             output_ed send_data = new output_ed(receiver_prime_d, receiver_prime_n, encrypted_arr);
         }

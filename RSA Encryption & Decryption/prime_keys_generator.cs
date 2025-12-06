@@ -38,7 +38,7 @@
             }
         }
 
-        public void data_largest_value()
+        private void data_largest_value()
         {
             if (receiver_data_arr.Length == 0)
             {
@@ -67,7 +67,7 @@
                 data_prime_numbers_generator(biggest_value);
             }
         }
-        public void data_prime_numbers_generator(long limit)
+        private void data_prime_numbers_generator(long limit)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("[LOG] \t\t");
@@ -103,7 +103,7 @@
             }
             data_prime_keys_gen();
         }
-        public void data_prime_keys_gen()
+        private void data_prime_keys_gen()
         {
             int prime_random = random.Next(0, prime_numbers_list.Count - 1);
             if (prime_random == 0)
@@ -138,7 +138,7 @@
             Console.WriteLine($"Sending the data to another instance in order to generate encryption key.");
             SendData();
         }
-        public void SendData()
+        private void SendData()
         {
             encryption_generator send_data_p = new encryption_generator(prime_p, prime_on, prime_n, receiver_data_arr);
         }

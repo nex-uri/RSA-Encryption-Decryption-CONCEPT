@@ -8,7 +8,9 @@ namespace RSA_Encryption___Decryption
         private readonly char[] _char;
         private readonly long[] ascii_value;
         private long[] decrypted_arr;
+        private char[] decrypted_char_arr;
         public int index;
+        public int conv_index;
 
         public decryption_message()
         {
@@ -48,17 +50,21 @@ namespace RSA_Encryption___Decryption
                 58, 59, 60, 61, 62, 63, 64, 91, 92, 93, 94, 95, 96, 123, 124, 125, 126, 32
             ];
             decrypted_arr = Array.Empty<long>();
+            decrypted_char_arr = Array.Empty<char>();
             index = -1;
+            conv_index = -1;
         }
 
         private void IncreaseSize()
         {
             long[] new_size_arr = new long[decrypted_arr.Length + 1];
+            char[] char_new_size_arr = new char[decrypted_arr.Length + 1];
             for (int i = 0; i < decrypted_arr.Length; i++)
             {
                 new_size_arr[i] = decrypted_arr[i];
             }
             decrypted_arr = new_size_arr;
+            decrypted_char_arr = char_new_size_arr;
         }
         public void add_arr(string data_arr)
         {
@@ -150,18 +156,20 @@ namespace RSA_Encryption___Decryption
             Console.ResetColor();
             Console.WriteLine($"Converting of each ASCII value into a character.");
 
-            foreach (long value in decrypted_arr)
+            conv_index++;
+            foreach (long val in decrypted_arr)
             {
                 for (int i = 0; i < ascii_value.Length; i++)
                 {
-                    if (value == ascii_value[i])
+                    if (ascii_value[i] == val)
                     {
-                        decrypted_arr[value] = _char[i];
+                        decrypted_char_arr[conv_index] = _char[i];
+                        Console.WriteLine(decrypted_char_arr[conv_index]);
                         break;
                     }
                 }
-                Console.WriteLine(value);
             }
+            conv_index = -1;
         }
     }
 }

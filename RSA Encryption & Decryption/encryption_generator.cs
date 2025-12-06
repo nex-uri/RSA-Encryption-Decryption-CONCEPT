@@ -22,7 +22,7 @@
             data_encryption_key_gen();
         }
 
-        public void data_encryption_key_gen()
+        private void data_encryption_key_gen()
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("[LOG] \t\t");
@@ -69,7 +69,7 @@
                 else if (remainder == 0) continue;
             }
         }
-        public void SendData()
+        private void SendData()
         {
             decryption_generator send_data_e = new decryption_generator(prime_e, receiver_prime_on, receiver_prime_n, receiver_data_arr);
         }

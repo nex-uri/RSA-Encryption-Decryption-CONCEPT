@@ -4,7 +4,6 @@
     {
         private readonly char[] _char;
         private readonly long[] ascii_value;
-        private long[] receiver_decrypted_data;
         private long[] value;
         public int index;
 
@@ -110,7 +109,7 @@
                 Environment.Exit(0);
             }
         }
-        public void SendData()
+        private void SendData()
         {
             prime_keys_generator send_data_message = new prime_keys_generator(value);
         }
