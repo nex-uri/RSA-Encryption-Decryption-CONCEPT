@@ -97,6 +97,7 @@ namespace RSA_Encryption___Decryption
         }
         public void data_decryption_message(long prime_key_n, long decryption_key)
         {
+            Console.Clear();
             Console.WriteLine("\n---------------------------------------------------------------------------------------------------");
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("[LOG] \t\t");

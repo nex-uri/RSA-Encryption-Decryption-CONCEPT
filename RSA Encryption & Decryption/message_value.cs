@@ -61,6 +61,7 @@
         }
         public void message(string input)
         {
+            Console.Clear();
             Console.ForegroundColor = ConsoleColor.White;
             Console.WriteLine("\n---------------------------------------------------------------------------------------------------");
             Console.ResetColor();
