@@ -247,6 +247,13 @@ namespace RSA_Encryption___Decryption
 
                     trigger = -1;
                 }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write("[ERROR] \t");
+                    Console.ResetColor();
+                    Console.WriteLine($"Failed to decrypt.");
+                }
             }
             else
             {

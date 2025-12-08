@@ -1,4 +1,6 @@
-﻿namespace RSA_Encryption___Decryption
+﻿using System.Numerics;
+
+namespace RSA_Encryption___Decryption
 {
     internal class prime_keys_generator
     {
@@ -57,7 +59,7 @@
             Console.ResetColor();
             Console.WriteLine($"Generating prime keys...");
 
-            long max = limit * limit;
+            long max = (long)BigInteger.Pow(limit, 4);
             bool[] isPrime = new bool[max + 1];
             for (int i = 2; i <= max; i++)
             {
@@ -78,8 +80,8 @@
 
             for (int i = 2; i <= max; i++)
             {
-                if (isPrime[i] && i > limit * 5) //The "limit" is multiplied by 5 to ensure 
-                {                                //that the encryption remains secure AT LEAST.
+                if (isPrime[i] && i > limit * 5) 
+                {                                
                     prime_numbers_list.Add(i);
                 }
                 else continue;
