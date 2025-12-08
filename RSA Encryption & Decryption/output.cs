@@ -66,17 +66,10 @@
             Console.WriteLine("\n");
 
             Console.ForegroundColor = ConsoleColor.White;
-            Console.Write("[PUBLIC KEY] \t\t");
-            Console.ResetColor();
-            Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.WriteLine($"{receiver_prime_n}\n");
-            Console.ResetColor();
-
-            Console.ForegroundColor = ConsoleColor.White;
             Console.Write("[DECRYPTION KEY] \t");
             Console.ResetColor();
             Console.ForegroundColor = ConsoleColor.Yellow;
-            Console.Write($"{receiver_prime_d}");
+            Console.Write($"{receiver_prime_n} {receiver_prime_d}");
             Console.ResetColor();
         }
         private void dec_data_output()

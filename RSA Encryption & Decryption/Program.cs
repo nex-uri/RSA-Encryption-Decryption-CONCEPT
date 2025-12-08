@@ -140,14 +140,7 @@
                             Console.ResetColor();
                             Console.WriteLine();
 
-                            Console.Write("Prime Key: ");
-                            Console.ForegroundColor = ConsoleColor.White;
-
-                            string prim_key_input = Console.ReadLine();
-                            Console.ResetColor();
-                            Console.WriteLine();
-
-                            Console.Write("Decryption Key: ");
+                            Console.Write("Decryption Key (e.g. '10203920 2303923'): ");
                             Console.ForegroundColor = ConsoleColor.White;
 
                             string decr_key_input = Console.ReadLine();
@@ -156,7 +149,7 @@
                             Console.Clear();
 
                             decrypt.add_arr(enc_mes_input);
-                            decrypt.data_decryption_message(prim_key_input, decr_key_input);
+                            decrypt.data_decryption_message(decr_key_input);
 
                             Console.WriteLine("\n---------------------------------------------------------------------------------------------------\n");
 

@@ -8,6 +8,10 @@ namespace RSA_Encryption___Decryption
         private readonly long[] ascii_value;
         private long[] decrypted_arr;
         private char[] decrypted_char_arr;
+        private long enc_converted_value;
+        private long enc_converted_value_end;
+        private long dec_converted_value;
+        private long dec_converted_value_end;
         private string number;
         public int index;
         public int conv_index;
@@ -52,6 +56,10 @@ namespace RSA_Encryption___Decryption
             ];
             decrypted_arr = Array.Empty<long>();
             decrypted_char_arr = Array.Empty<char>();
+            enc_converted_value = 0;
+            enc_converted_value_end = 0;
+            dec_converted_value = 0;
+            dec_converted_value_end = 0;
             number = "";
             index = -1;
             conv_index = -1;
@@ -67,8 +75,8 @@ namespace RSA_Encryption___Decryption
             }
             decrypted_arr = new_size_arr;
 
-            char[] char_new_size_arr = new char[decrypted_arr.Length + 1];
-            decrypted_char_arr = char_new_size_arr;
+            char[] new_size_arr_ = new char[decrypted_arr.Length + 1];
+            decrypted_char_arr = new_size_arr_;
         }
         public void add_arr(string data_arr)
         {
@@ -82,8 +90,8 @@ namespace RSA_Encryption___Decryption
                     index++;
                     IncreaseSize();
 
-                    long converted_value = Convert.ToInt64(number);
-                    decrypted_arr[index] = converted_value;
+                    enc_converted_value = Convert.ToInt64(number);
+                    decrypted_arr[index] = enc_converted_value;
                     number = "";
                     trigger = 0;
                 }
@@ -115,8 +123,8 @@ namespace RSA_Encryption___Decryption
                     index++;
                     IncreaseSize();
 
-                    long converted_value_end = Convert.ToInt64(number);
-                    decrypted_arr[index] = converted_value_end;
+                    enc_converted_value_end = Convert.ToInt64(number);
+                    decrypted_arr[index] = enc_converted_value_end;
                 }
                 else
                 {
@@ -136,47 +144,75 @@ namespace RSA_Encryption___Decryption
             number = "";
             trigger = -1;
         }
-        public void data_decryption_message(string prime_key_n, string decryption_key)
+        public void data_decryption_message(string decryption_key)
         {
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.Write("[LOG] \t\t");
             Console.ResetColor();
             Console.WriteLine($"Decrypting the message...");
 
-            string prime_key_n_trimmed = prime_key_n.Trim();
-            foreach (char c in prime_key_n_trimmed)
+            foreach (char c in decryption_key)
             {
-                if (char.IsLetter(c))
+                if (char.IsWhiteSpace(c))
                 {
-                    trigger = -1;
+                    dec_converted_value = Convert.ToInt64(number);
+                    number = "";
+                    trigger = 0;
+                }
+                else if (char.IsLetter(c))
+                {
+                    trigger = -2;
                     break;
                 }
-                else trigger = 0;
-            }
-
-            string decryption_key_trimmed = decryption_key.Trim();
-            foreach (char c in decryption_key_trimmed)
-            {
-                if (char.IsLetter(c))
+                else
                 {
-                    trigger = -1;
-                    break;
+                    number += c;
+                    trigger = 0;
                 }
-                else trigger = 0;
             }
 
             if (trigger == 0)
             {
-                long prime_key_converted = Convert.ToInt64(prime_key_n_trimmed);
-                long decryption_key_converted = Convert.ToInt64(decryption_key_trimmed);
+                foreach (char c in number)
+                {
+                    if (char.IsLetter(c))
+                    {
+                        trigger = -1;
+                        break;
+                    }
+                }
 
+                if (trigger == 0)
+                {
+                    dec_converted_value_end = Convert.ToInt64(number);
+                    trigger = 0;
+                }
+                else
+                {
+                    Console.ForegroundColor = ConsoleColor.Red;
+                    Console.Write("[ERROR] \t");
+                    Console.ResetColor();
+                    Console.WriteLine($"Failed to add into the data type.");
+                }
+            }
+            else if (trigger == -2)
+            {
+                Console.ForegroundColor = ConsoleColor.Red;
+                Console.Write("[ERROR] \t");
+                Console.ResetColor();
+                Console.WriteLine($"Failed to add into the data type.");
+            }
+            number = "";
+
+            if (trigger == 0)
+            {
                 trigger = -1;
 
-                if (decryption_key_converted != 0)
+                if (dec_converted_value_end != 0)
                 {
                     for (int i = 0; i < decrypted_arr.Length; i++)
                     {
-                        decrypted_arr[i] = (long)BigInteger.ModPow(decrypted_arr[i], decryption_key_converted, prime_key_converted);
+                        decrypted_arr[i] = (long)BigInteger.ModPow(decrypted_arr[i], dec_converted_value_end, dec_converted_value);
 
                         if (decrypted_arr[i] > 0)
                         {
