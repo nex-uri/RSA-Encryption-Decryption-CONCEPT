@@ -57,7 +57,7 @@
                     Console.ForegroundColor = ConsoleColor.Green;
                     Console.Write("[SUCCESS] \t");
                     Console.ResetColor();
-                    Console.WriteLine($"The encryption key has been GENERATED. {prime_e}");
+                    Console.WriteLine($"The encryption key has been GENERATED.");
 
                     Console.ForegroundColor = ConsoleColor.Yellow;
                     Console.Write("[LOG] \t\t");

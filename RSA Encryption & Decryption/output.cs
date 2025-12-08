@@ -66,7 +66,7 @@
             Console.WriteLine("\n");
 
             Console.ForegroundColor = ConsoleColor.White;
-            Console.Write("[PRIME KEY] \t\t");
+            Console.Write("[PUBLIC KEY] \t\t");
             Console.ResetColor();
             Console.ForegroundColor = ConsoleColor.Yellow;
             Console.WriteLine($"{receiver_prime_n}\n");
